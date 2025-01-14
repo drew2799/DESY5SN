@@ -3,7 +3,6 @@ module DESY5SN
 using Artifacts, ArtifactUtils
 using DelimitedFiles
 using DataFrames
-using Plots
 using LinearAlgebra
 using CSV
 using LaTeXStrings
@@ -41,6 +40,7 @@ struct DESY5SN_data
     end
 end
 
+#=
 #    Plotting distance modulus as function of redshift
 function distance_mod_plotting(SN_data)
     dist_mod_plot = scatter(SN_data.data[:,1], SN_data.data[:,4], yerr=sqrt.(diag(SN_data.covariance)),
@@ -61,5 +61,5 @@ function cov_mat_plotting(SN_data)
     display(covariance_plot)
     return covariance_plot
 end
-
+=#
 end # module DESY5SN
