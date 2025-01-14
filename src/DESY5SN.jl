@@ -11,7 +11,7 @@ function __init__()
 
     print("Loading data and covariance through artifact")
     global cov_data = vec(readdlm(joinpath(artifact"DESY5SN", "STAT+SYS.txt")))
-    global data = CSV.read(joinpath(artifact"DESY5SN", "DES-SN5YR_HD.csv"), DataFrame)
+    global sn_data = CSV.read(joinpath(artifact"DESY5SN", "DES-SN5YR_HD.csv"), DataFrame)
 
 end
 
@@ -25,14 +25,14 @@ struct DESY5SN_data
 
     function DESY5SN_data()
 
-        if cov_data[1] != nrow(data)
+        if cov_data[1] != nrow(sn_data)
             throw(DimensionMismatch("Number of covariance entries does not match data entries."))
         else
             nSN = Int(cov_data[1])
         end
 
-        data = Matrix(select(data, Not(:CID, :IDSURVEY)))
-        data_header = names(select(data, Not(:CID, :IDSURVEY)))
+        data = Matrix(select(sn_data, Not(:CID, :IDSURVEY)))
+        data_header = names(select(sn_data, Not(:CID, :IDSURVEY)))
         cov_mat = reshape(cov_data[2:end], nSN, nSN)
         inv_cov_mat = inv(cov_mat)
         
