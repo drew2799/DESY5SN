@@ -7,6 +7,8 @@ using LinearAlgebra
 using CSV
 using LaTeXStrings
 
+export DESY5SN_data
+
 function __init__()
 
     print("Loading data and covariance through artifact")
