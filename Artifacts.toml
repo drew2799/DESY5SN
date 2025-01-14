@@ -1,0 +1,6 @@
+[DESY5SN]
+git-tree-sha1 = "0d0c68825785c0cefe3b76ae71f3572f4d74d76b"
+
+    [[DESY5SN.download]]
+    sha256 = "f371d9803bbe7e759253a50b4e2a8b156feed5377c222ce8d8bc83644be6ebed"
+    url = "https://gist.github.com/drew2799/bf2f9ee65fff75b44f906d35be115f92/raw/0d0c68825785c0cefe3b76ae71f3572f4d74d76b.tar.gz"
