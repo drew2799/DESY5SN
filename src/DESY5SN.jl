@@ -22,9 +22,8 @@ struct DESY5SN_data
     nSN::Integer                       # Number of SNe
     covariance::Matrix{Float64}        # Covariance matrix
     inv_covariance::Matrix{Float64}    # Inverse of covariance matrix
-    data::DataFrame                    # SN DataFrame ("zHD","zHEL","MU","MUERR","MUERR_VPEC","MUERR_SYS")
-    data_header::Vector{String}        # SN DataFrame columns names ("zHD","zHEL","MU","MUERR","MUERR_VPEC","MUERR_SYS")
-
+    data::DataFrame                    # SN DataFrame ("zCMB","zHD","zHEL","MU","MUERR_FINAL")
+    
     function DESY5SN_data()
 
         if cov_data[1] != nrow(sn_data)
@@ -33,12 +32,10 @@ struct DESY5SN_data
             nSN = Int(cov_data[1])
         end
 
-        data = select(sn_data, Not(:CID, :IDSURVEY))
-        data_header = names(select(sn_data, Not(:CID, :IDSURVEY)))
         cov_mat = reshape(cov_data[2:end], nSN, nSN)
         inv_cov_mat = inv(cov_mat)
         
-        new(nSN, cov_mat, inv_cov_mat, data, data_header)
+        new(nSN, cov_mat, inv_cov_mat, sn_data)
     end
 end
 
